@@ -68,10 +68,6 @@ public abstract class BeanUtil {
         return (T) beanWrapper.getWrappedInstance();
     }
 
-    public static interface Callback<T> {
-        void set(Object source, T target);
-    }
-
     //检查Pojo对象是否有null字段
     public static boolean checkPojoNullField(Object o, Class<?> clz) {
         try {
@@ -89,5 +85,9 @@ public abstract class BeanUtil {
         } catch (IllegalAccessException e) {
             return false;
         }
+    }
+
+    public static interface Callback<T> {
+        void set(Object source, T target);
     }
 }

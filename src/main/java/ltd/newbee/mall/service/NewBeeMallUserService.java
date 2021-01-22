@@ -41,6 +41,7 @@ public interface NewBeeMallUserService {
 
     /**
      * 登出接口
+     *
      * @param userId
      * @return
      */

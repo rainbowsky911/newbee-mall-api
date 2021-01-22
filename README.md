@@ -4,9 +4,12 @@
 ![Version 2.0.0](https://img.shields.io/badge/version-2.0.0-yellow.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/newbee-ltd/newbee-mall-api/blob/master/LICENSE)
 
-newbee-mall 项目是一套电商系统，包括 newbee-mall 商城系统及 newbee-mall-admin 商城后台管理系统，基于 Spring Boot 2.X 及相关技术栈开发。 前台商城系统包含首页门户、商品分类、新品上线、首页轮播、商品推荐、商品搜索、商品展示、购物车、订单结算、订单流程、个人订单管理、会员中心、帮助中心等模块。 后台管理系统包含数据面板、轮播图管理、商品管理、订单管理、会员管理、分类管理、设置等模块。
+newbee-mall 项目是一套电商系统，包括 newbee-mall 商城系统及 newbee-mall-admin 商城后台管理系统，基于 Spring Boot 2.X 及相关技术栈开发。
+前台商城系统包含首页门户、商品分类、新品上线、首页轮播、商品推荐、商品搜索、商品展示、购物车、订单结算、订单流程、个人订单管理、会员中心、帮助中心等模块。
+后台管理系统包含数据面板、轮播图管理、商品管理、订单管理、会员管理、分类管理、设置等模块。
 
-本仓库中的源码为新蜂商城前后端分离版本的后端 API 项目，技术栈为 Spring Boot，主要面向服务端开发人员，前端 Vue 页面源码在另外一个仓库 [newbee-mall-vue-app](https://github.com/newbee-ltd/newbee-mall-vue-app)。
+本仓库中的源码为新蜂商城前后端分离版本的后端 API 项目，技术栈为 Spring Boot，主要面向服务端开发人员，前端 Vue
+页面源码在另外一个仓库 [newbee-mall-vue-app](https://github.com/newbee-ltd/newbee-mall-vue-app)。
 
 前后端分离版本包括三个仓库：
 
@@ -14,7 +17,7 @@ newbee-mall 项目是一套电商系统，包括 newbee-mall 商城系统及 new
 - [新蜂商城 V2 前端页面 newbee-mall-vue-app](https://github.com/newbee-ltd/newbee-mall-vue-app)
 - [新蜂商城 V2 后台管理系统 newbee-mall-manage](https://github.com/newbee-ltd/newbee-mall-manage)
 
->与新蜂商城第一个版有所区别，希望大家不要混淆。
+> 与新蜂商城第一个版有所区别，希望大家不要混淆。
 
 **坚持不易，如果觉得项目还不错的话可以给项目一个 Star 吧，也是对我一直更新代码的一种鼓励啦，谢谢各位的支持。**
 
@@ -78,7 +81,7 @@ newbee-mall 项目是一套电商系统，包括 newbee-mall 商城系统及 new
 
 ## 软件著作权
 
->本系统已申请软件著作权，受国家版权局知识产权以及国家计算机软件著作权保护！
+> 本系统已申请软件著作权，受国家版权局知识产权以及国家计算机软件著作权保护！
 
 ![](https://newbee-mall.oss-cn-beijing.aliyuncs.com/poster/store/newbee-mall-copyright-02.png)
 

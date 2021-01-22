@@ -9,6 +9,7 @@
 package ltd.newbee.mall.service;
 
 import ltd.newbee.mall.api.vo.NewBeeMallIndexConfigGoodsVO;
+
 import java.util.List;
 
 public interface NewBeeMallIndexConfigService {

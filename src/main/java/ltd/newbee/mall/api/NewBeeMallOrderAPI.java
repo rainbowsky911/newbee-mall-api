@@ -14,11 +14,11 @@ import io.swagger.annotations.ApiParam;
 import ltd.newbee.mall.api.param.SaveOrderParam;
 import ltd.newbee.mall.api.vo.NewBeeMallOrderDetailVO;
 import ltd.newbee.mall.api.vo.NewBeeMallOrderListVO;
+import ltd.newbee.mall.api.vo.NewBeeMallShoppingCartItemVO;
 import ltd.newbee.mall.common.Constants;
 import ltd.newbee.mall.common.NewBeeMallException;
 import ltd.newbee.mall.common.ServiceResultEnum;
 import ltd.newbee.mall.config.annotation.TokenToMallUser;
-import ltd.newbee.mall.api.vo.NewBeeMallShoppingCartItemVO;
 import ltd.newbee.mall.entity.MallUser;
 import ltd.newbee.mall.entity.MallUserAddress;
 import ltd.newbee.mall.service.NewBeeMallOrderService;
@@ -93,8 +93,8 @@ public class NewBeeMallOrderAPI {
     @GetMapping("/order")
     @ApiOperation(value = "订单列表接口", notes = "传参为页码")
     public Result<PageResult<List<NewBeeMallOrderListVO>>> orderList(@ApiParam(value = "页码") @RequestParam(required = false) Integer pageNumber,
-                            @ApiParam(value = "订单状态:0.待支付 1.待确认 2.待发货 3:已发货 4.交易成功") @RequestParam(required = false) Integer status,
-                            @TokenToMallUser MallUser loginMallUser) {
+                                                                     @ApiParam(value = "订单状态:0.待支付 1.待确认 2.待发货 3:已发货 4.交易成功") @RequestParam(required = false) Integer status,
+                                                                     @TokenToMallUser MallUser loginMallUser) {
         Map params = new HashMap(4);
         if (pageNumber == null || pageNumber < 1) {
             pageNumber = 1;

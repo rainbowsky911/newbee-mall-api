@@ -38,6 +38,24 @@ public class TokenToMallUserMethodArgumentResolver implements HandlerMethodArgum
     public TokenToMallUserMethodArgumentResolver() {
     }
 
+    public static byte[] getRequestPostBytes(HttpServletRequest request)
+            throws IOException {
+        int contentLength = request.getContentLength();
+        if (contentLength < 0) {
+            return null;
+        }
+        byte buffer[] = new byte[contentLength];
+        for (int i = 0; i < contentLength; ) {
+            int readlen = request.getInputStream().read(buffer, i,
+                    contentLength - i);
+            if (readlen == -1) {
+                break;
+            }
+            i += readlen;
+        }
+        return buffer;
+    }
+
     public boolean supportsParameter(MethodParameter parameter) {
         if (parameter.hasParameterAnnotation(TokenToMallUser.class)) {
             return true;
@@ -67,24 +85,6 @@ public class TokenToMallUserMethodArgumentResolver implements HandlerMethodArgum
             }
         }
         return null;
-    }
-
-    public static byte[] getRequestPostBytes(HttpServletRequest request)
-            throws IOException {
-        int contentLength = request.getContentLength();
-        if (contentLength < 0) {
-            return null;
-        }
-        byte buffer[] = new byte[contentLength];
-        for (int i = 0; i < contentLength; ) {
-            int readlen = request.getInputStream().read(buffer, i,
-                    contentLength - i);
-            if (readlen == -1) {
-                break;
-            }
-            i += readlen;
-        }
-        return buffer;
     }
 
 }

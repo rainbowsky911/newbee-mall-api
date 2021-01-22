@@ -10,7 +10,6 @@ package ltd.newbee.mall.api.param;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import springfox.documentation.annotations.ApiIgnore;
 
 import java.io.Serializable;
 

@@ -8,13 +8,15 @@
  */
 package ltd.newbee.mall.api;
 
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import ltd.newbee.mall.api.vo.NewBeeMallGoodsDetailVO;
 import ltd.newbee.mall.api.vo.NewBeeMallSearchGoodsVO;
 import ltd.newbee.mall.common.Constants;
 import ltd.newbee.mall.common.NewBeeMallException;
 import ltd.newbee.mall.common.ServiceResultEnum;
 import ltd.newbee.mall.config.annotation.TokenToMallUser;
-import ltd.newbee.mall.api.vo.NewBeeMallGoodsDetailVO;
 import ltd.newbee.mall.entity.MallUser;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.service.NewBeeMallGoodsService;
@@ -46,7 +48,7 @@ public class NewBeeMallGoodsAPI {
                                                                     @RequestParam(required = false) @ApiParam(value = "orderBy") String orderBy,
                                                                     @RequestParam(required = false) @ApiParam(value = "页码") Integer pageNumber,
                                                                     @TokenToMallUser MallUser loginMallUser) {
-        
+
         logger.info("goods search api,keyword={},goodsCategoryId={},orderBy={},pageNumber={},userId={}", keyword, goodsCategoryId, orderBy, pageNumber, loginMallUser.getUserId());
 
         Map params = new HashMap(4);

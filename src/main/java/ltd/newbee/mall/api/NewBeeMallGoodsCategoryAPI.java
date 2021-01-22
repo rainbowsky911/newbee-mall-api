@@ -10,9 +10,9 @@ package ltd.newbee.mall.api;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import ltd.newbee.mall.api.vo.NewBeeMallIndexCategoryVO;
 import ltd.newbee.mall.common.NewBeeMallException;
 import ltd.newbee.mall.common.ServiceResultEnum;
-import ltd.newbee.mall.api.vo.NewBeeMallIndexCategoryVO;
 import ltd.newbee.mall.service.NewBeeMallCategoryService;
 import ltd.newbee.mall.util.Result;
 import ltd.newbee.mall.util.ResultGenerator;

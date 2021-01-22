@@ -10,11 +10,11 @@ package ltd.newbee.mall.api;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import ltd.newbee.mall.common.Constants;
-import ltd.newbee.mall.common.IndexConfigTypeEnum;
 import ltd.newbee.mall.api.vo.IndexInfoVO;
 import ltd.newbee.mall.api.vo.NewBeeMallIndexCarouselVO;
 import ltd.newbee.mall.api.vo.NewBeeMallIndexConfigGoodsVO;
+import ltd.newbee.mall.common.Constants;
+import ltd.newbee.mall.common.IndexConfigTypeEnum;
 import ltd.newbee.mall.service.NewBeeMallCarouselService;
 import ltd.newbee.mall.service.NewBeeMallIndexConfigService;
 import ltd.newbee.mall.util.Result;

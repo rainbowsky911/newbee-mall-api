@@ -10,6 +10,7 @@ package ltd.newbee.mall.api.param;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
 import java.io.Serializable;
 
 /**
