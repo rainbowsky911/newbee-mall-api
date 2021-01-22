@@ -8,13 +8,15 @@
  */
 package ltd.newbee.mall.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import ltd.newbee.mall.entity.GoodsCategory;
 import ltd.newbee.mall.entity.IndexConfig;
 import ltd.newbee.mall.util.PageQueryUtil;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface IndexConfigMapper {
+public interface IndexConfigMapper extends BaseMapper<IndexConfig> {
     int deleteByPrimaryKey(Long configId);
 
     int insert(IndexConfig record);

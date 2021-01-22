@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.entity;
 
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
 /**
@@ -15,7 +16,7 @@ import lombok.Data;
  */
 
 @Data
-public class StockNumDTO {
+public class StockNumDTO  extends Model<StockNumDTO> {
     private Long goodsId;
 
     private Integer goodsCount;

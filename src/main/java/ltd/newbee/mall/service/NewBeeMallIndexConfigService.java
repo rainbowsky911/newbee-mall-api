@@ -8,11 +8,14 @@
  */
 package ltd.newbee.mall.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import ltd.newbee.mall.api.vo.NewBeeMallIndexConfigGoodsVO;
+import ltd.newbee.mall.entity.GoodsCategory;
+import ltd.newbee.mall.entity.IndexConfig;
 
 import java.util.List;
 
-public interface NewBeeMallIndexConfigService {
+public interface NewBeeMallIndexConfigService extends IService<IndexConfig> {
 
     /**
      * 返回固定数量的首页配置商品对象(首页调用)

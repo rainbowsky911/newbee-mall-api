@@ -8,9 +8,14 @@
  */
 package ltd.newbee.mall.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import ltd.newbee.mall.api.param.MallUserUpdateParam;
+import ltd.newbee.mall.entity.GoodsCategory;
+import ltd.newbee.mall.entity.MallUser;
 
-public interface NewBeeMallUserService {
+public interface NewBeeMallUserService extends IService<MallUser>{
+
+
 
     /**
      * 用户注册

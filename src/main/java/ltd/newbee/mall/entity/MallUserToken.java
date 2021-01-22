@@ -8,12 +8,13 @@
  */
 package ltd.newbee.mall.entity;
 
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class MallUserToken {
+public class MallUserToken extends Model<MallUserToken>{
     private Long userId;
 
     private String token;

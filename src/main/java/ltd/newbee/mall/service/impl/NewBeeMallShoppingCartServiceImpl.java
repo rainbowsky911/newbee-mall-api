@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ltd.newbee.mall.api.param.SaveCartItemParam;
 import ltd.newbee.mall.api.param.UpdateCartItemParam;
 import ltd.newbee.mall.api.vo.NewBeeMallShoppingCartItemVO;
@@ -15,8 +16,10 @@ import ltd.newbee.mall.common.Constants;
 import ltd.newbee.mall.common.NewBeeMallException;
 import ltd.newbee.mall.common.ServiceResultEnum;
 import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
+import ltd.newbee.mall.dao.NewBeeMallOrderMapper;
 import ltd.newbee.mall.dao.NewBeeMallShoppingCartItemMapper;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
+import ltd.newbee.mall.entity.NewBeeMallOrder;
 import ltd.newbee.mall.entity.NewBeeMallShoppingCartItem;
 import ltd.newbee.mall.service.NewBeeMallShoppingCartService;
 import ltd.newbee.mall.util.BeanUtil;
@@ -31,7 +34,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
-public class NewBeeMallShoppingCartServiceImpl implements NewBeeMallShoppingCartService {
+public class NewBeeMallShoppingCartServiceImpl  extends ServiceImpl<NewBeeMallShoppingCartItemMapper, NewBeeMallShoppingCartItem> implements NewBeeMallShoppingCartService {
 
     @Autowired
     private NewBeeMallShoppingCartItemMapper newBeeMallShoppingCartItemMapper;

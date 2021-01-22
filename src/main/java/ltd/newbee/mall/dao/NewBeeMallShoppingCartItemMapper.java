@@ -8,13 +8,15 @@
  */
 package ltd.newbee.mall.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import ltd.newbee.mall.entity.GoodsCategory;
 import ltd.newbee.mall.entity.NewBeeMallShoppingCartItem;
 import ltd.newbee.mall.util.PageQueryUtil;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface NewBeeMallShoppingCartItemMapper {
+public interface NewBeeMallShoppingCartItemMapper extends BaseMapper<NewBeeMallShoppingCartItem> {
     int deleteByPrimaryKey(Long cartItemId);
 
     int insert(NewBeeMallShoppingCartItem record);

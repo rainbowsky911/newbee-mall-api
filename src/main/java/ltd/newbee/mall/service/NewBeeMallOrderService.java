@@ -8,16 +8,19 @@
  */
 package ltd.newbee.mall.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import ltd.newbee.mall.api.vo.NewBeeMallOrderDetailVO;
 import ltd.newbee.mall.api.vo.NewBeeMallShoppingCartItemVO;
+import ltd.newbee.mall.entity.GoodsCategory;
 import ltd.newbee.mall.entity.MallUser;
 import ltd.newbee.mall.entity.MallUserAddress;
+import ltd.newbee.mall.entity.NewBeeMallOrder;
 import ltd.newbee.mall.util.PageQueryUtil;
 import ltd.newbee.mall.util.PageResult;
 
 import java.util.List;
 
-public interface NewBeeMallOrderService {
+public interface NewBeeMallOrderService extends IService<NewBeeMallOrder> {
     /**
      * 获取订单详情
      *

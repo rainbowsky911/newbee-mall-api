@@ -8,11 +8,14 @@
  */
 package ltd.newbee.mall.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import ltd.newbee.mall.api.vo.NewBeeMallIndexCarouselVO;
+import ltd.newbee.mall.entity.Carousel;
+import ltd.newbee.mall.entity.GoodsCategory;
 
 import java.util.List;
 
-public interface NewBeeMallCarouselService {
+public interface NewBeeMallCarouselService  extends IService<Carousel> {
 
     /**
      * 返回固定数量的轮播图对象(首页调用)

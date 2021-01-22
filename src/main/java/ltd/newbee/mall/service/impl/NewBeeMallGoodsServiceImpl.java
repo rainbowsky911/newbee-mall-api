@@ -8,8 +8,11 @@
  */
 package ltd.newbee.mall.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ltd.newbee.mall.api.vo.NewBeeMallSearchGoodsVO;
+import ltd.newbee.mall.dao.GoodsCategoryMapper;
 import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
+import ltd.newbee.mall.entity.GoodsCategory;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.service.NewBeeMallGoodsService;
 import ltd.newbee.mall.util.BeanUtil;
@@ -23,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
+public class NewBeeMallGoodsServiceImpl extends ServiceImpl<NewBeeMallGoodsMapper, NewBeeMallGoods> implements NewBeeMallGoodsService {
 
     @Autowired
     private NewBeeMallGoodsMapper goodsMapper;

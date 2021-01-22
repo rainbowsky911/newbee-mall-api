@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ltd.newbee.mall.api.vo.NewBeeMallOrderDetailVO;
 import ltd.newbee.mall.api.vo.NewBeeMallOrderItemVO;
 import ltd.newbee.mall.api.vo.NewBeeMallOrderListVO;
@@ -32,7 +33,7 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.groupingBy;
 
 @Service
-public class NewBeeMallOrderServiceImpl implements NewBeeMallOrderService {
+public class NewBeeMallOrderServiceImpl  extends ServiceImpl<NewBeeMallOrderMapper, NewBeeMallOrder> implements NewBeeMallOrderService {
 
     @Autowired
     private NewBeeMallOrderMapper newBeeMallOrderMapper;

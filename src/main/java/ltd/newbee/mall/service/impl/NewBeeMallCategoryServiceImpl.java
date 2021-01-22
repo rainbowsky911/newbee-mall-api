@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ltd.newbee.mall.api.vo.NewBeeMallIndexCategoryVO;
 import ltd.newbee.mall.api.vo.SecondLevelCategoryVO;
 import ltd.newbee.mall.api.vo.ThirdLevelCategoryVO;
@@ -28,7 +29,7 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.groupingBy;
 
 @Service
-public class NewBeeMallCategoryServiceImpl implements NewBeeMallCategoryService {
+public class NewBeeMallCategoryServiceImpl extends ServiceImpl<GoodsCategoryMapper, GoodsCategory> implements NewBeeMallCategoryService {
 
     @Autowired
     private GoodsCategoryMapper goodsCategoryMapper;

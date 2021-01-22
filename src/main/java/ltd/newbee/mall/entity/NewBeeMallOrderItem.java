@@ -8,12 +8,13 @@
  */
 package ltd.newbee.mall.entity;
 
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class NewBeeMallOrderItem {
+public class NewBeeMallOrderItem  extends Model<NewBeeMallOrderItem> {
     private Long orderItemId;
 
     private Long orderId;

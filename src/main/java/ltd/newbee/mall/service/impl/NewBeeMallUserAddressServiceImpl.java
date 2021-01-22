@@ -8,11 +8,14 @@
  */
 package ltd.newbee.mall.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ltd.newbee.mall.api.vo.NewBeeMallUserAddressVO;
 import ltd.newbee.mall.common.NewBeeMallException;
 import ltd.newbee.mall.common.ServiceResultEnum;
 import ltd.newbee.mall.dao.MallUserAddressMapper;
+import ltd.newbee.mall.dao.NewBeeMallShoppingCartItemMapper;
 import ltd.newbee.mall.entity.MallUserAddress;
+import ltd.newbee.mall.entity.NewBeeMallShoppingCartItem;
 import ltd.newbee.mall.service.NewBeeMallUserAddressService;
 import ltd.newbee.mall.util.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +26,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class NewBeeMallUserAddressServiceImpl implements NewBeeMallUserAddressService {
+public class NewBeeMallUserAddressServiceImpl extends ServiceImpl<MallUserAddressMapper, MallUserAddress>  implements NewBeeMallUserAddressService {
 
     @Autowired
     private MallUserAddressMapper userAddressMapper;

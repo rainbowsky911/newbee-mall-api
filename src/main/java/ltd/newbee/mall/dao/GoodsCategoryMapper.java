@@ -8,15 +8,17 @@
  */
 package ltd.newbee.mall.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import ltd.newbee.mall.entity.GoodsCategory;
 import ltd.newbee.mall.util.PageQueryUtil;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface GoodsCategoryMapper {
+public interface GoodsCategoryMapper extends BaseMapper<GoodsCategory> {
     int deleteByPrimaryKey(Long categoryId);
 
+    @Override
     int insert(GoodsCategory record);
 
     int insertSelective(GoodsCategory record);

@@ -8,11 +8,13 @@
  */
 package ltd.newbee.mall.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
+import ltd.newbee.mall.entity.GoodsCategory;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.util.PageQueryUtil;
 import ltd.newbee.mall.util.PageResult;
 
-public interface NewBeeMallGoodsService {
+public interface NewBeeMallGoodsService extends IService<NewBeeMallGoods> {
 
     /**
      * 获取商品详情

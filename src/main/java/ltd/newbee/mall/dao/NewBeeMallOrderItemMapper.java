@@ -8,12 +8,14 @@
  */
 package ltd.newbee.mall.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import ltd.newbee.mall.entity.GoodsCategory;
 import ltd.newbee.mall.entity.NewBeeMallOrderItem;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface NewBeeMallOrderItemMapper {
+public interface NewBeeMallOrderItemMapper extends BaseMapper<NewBeeMallOrderItem> {
     int deleteByPrimaryKey(Long orderItemId);
 
     int insert(NewBeeMallOrderItem record);

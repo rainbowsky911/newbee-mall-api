@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import ltd.newbee.mall.api.param.SaveCartItemParam;
 import ltd.newbee.mall.api.param.UpdateCartItemParam;
 import ltd.newbee.mall.api.vo.NewBeeMallShoppingCartItemVO;
@@ -17,7 +18,7 @@ import ltd.newbee.mall.util.PageResult;
 
 import java.util.List;
 
-public interface NewBeeMallShoppingCartService {
+public interface NewBeeMallShoppingCartService extends IService<NewBeeMallShoppingCartItem> {
 
     /**
      * 保存商品至购物车中

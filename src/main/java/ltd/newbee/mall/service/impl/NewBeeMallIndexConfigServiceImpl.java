@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ltd.newbee.mall.api.vo.NewBeeMallIndexConfigGoodsVO;
 import ltd.newbee.mall.dao.IndexConfigMapper;
 import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
@@ -24,7 +25,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class NewBeeMallIndexConfigServiceImpl implements NewBeeMallIndexConfigService {
+public class NewBeeMallIndexConfigServiceImpl  extends ServiceImpl<IndexConfigMapper, IndexConfig>  implements NewBeeMallIndexConfigService {
 
     @Autowired
     private IndexConfigMapper indexConfigMapper;

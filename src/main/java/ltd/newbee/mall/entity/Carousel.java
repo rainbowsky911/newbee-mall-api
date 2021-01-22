@@ -8,13 +8,14 @@
  */
 package ltd.newbee.mall.entity;
 
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class Carousel {
+public class Carousel extends Model<Carousel> {
     private Integer carouselId;
 
     private String carouselUrl;

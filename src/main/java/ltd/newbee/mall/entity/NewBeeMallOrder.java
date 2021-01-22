@@ -8,13 +8,14 @@
  */
 package ltd.newbee.mall.entity;
 
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class NewBeeMallOrder {
+public class NewBeeMallOrder  extends Model<NewBeeMallOrder> {
     private Long orderId;
 
     private String orderNo;

@@ -8,9 +8,10 @@
  */
 package ltd.newbee.mall.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import ltd.newbee.mall.entity.NewBeeMallOrderAddress;
 
-public interface NewBeeMallOrderAddressMapper {
+public interface NewBeeMallOrderAddressMapper extends BaseMapper<NewBeeMallOrderAddress> {
     int deleteByPrimaryKey(Long orderId);
 
     int insert(NewBeeMallOrderAddress record);
