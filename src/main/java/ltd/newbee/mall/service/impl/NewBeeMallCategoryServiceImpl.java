@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 
-@Service
+@Service("newBeeMallCategoryService")
 public class NewBeeMallCategoryServiceImpl extends ServiceImpl<GoodsCategoryMapper, GoodsCategory> implements NewBeeMallCategoryService {
 
     @Autowired

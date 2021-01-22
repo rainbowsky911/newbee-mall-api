@@ -8,12 +8,14 @@
  */
 package ltd.newbee.mall.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
+@TableName("tb_newbee_mall_user_address")
 public class MallUserAddress extends Model<MallUserAddress>{
     private Long addressId;
 

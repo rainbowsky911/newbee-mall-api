@@ -32,8 +32,9 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 
-@Service
-public class NewBeeMallOrderServiceImpl  extends ServiceImpl<NewBeeMallOrderMapper, NewBeeMallOrder> implements NewBeeMallOrderService {
+@Service("newBeeMallOrderService")
+public class NewBeeMallOrderServiceImpl
+        extends ServiceImpl<NewBeeMallOrderMapper, NewBeeMallOrder> implements NewBeeMallOrderService {
 
     @Autowired
     private NewBeeMallOrderMapper newBeeMallOrderMapper;

@@ -8,10 +8,12 @@
  */
 package ltd.newbee.mall.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
 @Data
+@TableName("tb_newbee_mall_order_address")
 public class NewBeeMallOrderAddress  extends Model<NewBeeMallOrderAddress> {
     private Long orderId;
 

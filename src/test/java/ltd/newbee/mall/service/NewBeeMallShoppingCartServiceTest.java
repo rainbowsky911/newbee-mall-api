@@ -38,6 +38,14 @@ class NewBeeMallShoppingCartServiceTest {
 
     @Test
     void getMyShoppingCartItems() {
+   /*     cartService.getMyShoppingCartItems(7L).stream().forEach(e->{
+            System.out.println(e.toString());
+        });*/
+
+        System.out.println("==================");
+        cartService.list().stream().forEach(e -> {
+            System.out.println(e.toString());
+        });
     }
 
     @Test

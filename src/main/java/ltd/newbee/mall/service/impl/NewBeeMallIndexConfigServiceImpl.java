@@ -24,8 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
-public class NewBeeMallIndexConfigServiceImpl  extends ServiceImpl<IndexConfigMapper, IndexConfig>  implements NewBeeMallIndexConfigService {
+@Service("newBeeMallIndexConfigService")
+public class NewBeeMallIndexConfigServiceImpl
+        extends ServiceImpl<IndexConfigMapper, IndexConfig>  implements NewBeeMallIndexConfigService {
 
     @Autowired
     private IndexConfigMapper indexConfigMapper;

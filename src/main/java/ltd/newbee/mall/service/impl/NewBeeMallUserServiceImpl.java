@@ -13,11 +13,9 @@ import ltd.newbee.mall.api.param.MallUserUpdateParam;
 import ltd.newbee.mall.common.Constants;
 import ltd.newbee.mall.common.NewBeeMallException;
 import ltd.newbee.mall.common.ServiceResultEnum;
-import ltd.newbee.mall.dao.MallUserAddressMapper;
 import ltd.newbee.mall.dao.MallUserMapper;
 import ltd.newbee.mall.dao.NewBeeMallUserTokenMapper;
 import ltd.newbee.mall.entity.MallUser;
-import ltd.newbee.mall.entity.MallUserAddress;
 import ltd.newbee.mall.entity.MallUserToken;
 import ltd.newbee.mall.service.NewBeeMallUserService;
 import ltd.newbee.mall.util.MD5Util;
@@ -28,8 +26,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-@Service
-public class NewBeeMallUserServiceImpl  extends ServiceImpl<MallUserMapper, MallUser> implements NewBeeMallUserService {
+@Service("newBeeMallUserService")
+public class NewBeeMallUserServiceImpl
+        extends ServiceImpl<MallUserMapper, MallUser> implements NewBeeMallUserService {
 
     @Autowired
     private MallUserMapper mallUserMapper;

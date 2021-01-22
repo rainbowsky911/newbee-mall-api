@@ -71,10 +71,11 @@ Copyright (c) 2020 十三 all rights reserved.
             <scope>test</scope>
         </dependency>
 
+        <!--MyBatis Plus 依赖-->
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
-            <version>3.4.2</version>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.3.2</version>
         </dependency>
 
     </dependencies>

@@ -11,9 +11,7 @@ package ltd.newbee.mall.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ltd.newbee.mall.api.vo.NewBeeMallIndexCarouselVO;
 import ltd.newbee.mall.dao.CarouselMapper;
-import ltd.newbee.mall.dao.GoodsCategoryMapper;
 import ltd.newbee.mall.entity.Carousel;
-import ltd.newbee.mall.entity.GoodsCategory;
 import ltd.newbee.mall.service.NewBeeMallCarouselService;
 import ltd.newbee.mall.util.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +21,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service("newBeeMallCarouselService")
 public class NewBeeMallCarouselServiceImpl extends ServiceImpl<CarouselMapper, Carousel>  implements NewBeeMallCarouselService {
 
     @Autowired

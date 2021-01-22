@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -15,6 +16,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
+@TableName("tb_newbee_mall_goods_info")
 public class NewBeeMallGoods  extends Model<NewBeeMallGoods>{
     private Long goodsId;
 
