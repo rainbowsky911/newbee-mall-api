@@ -7,6 +7,10 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+      logic-delete-field: flag
+      logic-delete-value: 1
+      # 0 代表未删除，不配置默认是0，也可修改配置
+      logic-not-delete-value: 0
   configuration:
     auto-mapping-behavior: partial
     map-underscore-to-camel-case: true
