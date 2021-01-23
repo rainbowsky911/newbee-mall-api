@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.entity;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
@@ -24,7 +25,7 @@ public class NewBeeMallShoppingCartItem  extends Model<NewBeeMallShoppingCartIte
     private Long goodsId;
 
     private Integer goodsCount;
-
+    @TableLogic
     private Byte isDeleted;
 
     private Date createTime;

@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.entity;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
@@ -34,7 +35,7 @@ public class MallUserAddress extends Model<MallUserAddress>{
     private String regionName;
 
     private String detailAddress;
-
+    @TableLogic
     private Byte isDeleted;
 
     private Date createTime;

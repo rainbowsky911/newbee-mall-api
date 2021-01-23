@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.entity;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -27,7 +28,7 @@ public class MallUser  extends Model<MallUser>{
     private String passwordMd5;
 
     private String introduceSign;
-
+    @TableLogic
     private Byte isDeleted;
 
     private Byte lockedFlag;

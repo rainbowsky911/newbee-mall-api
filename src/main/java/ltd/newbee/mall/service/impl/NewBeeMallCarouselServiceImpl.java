@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ltd.newbee.mall.api.vo.NewBeeMallIndexCarouselVO;
 import ltd.newbee.mall.dao.CarouselMapper;
@@ -20,9 +21,10 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service("newBeeMallCarouselService")
-public class NewBeeMallCarouselServiceImpl extends ServiceImpl<CarouselMapper, Carousel>  implements NewBeeMallCarouselService {
+public class NewBeeMallCarouselServiceImpl extends ServiceImpl<CarouselMapper, Carousel> implements NewBeeMallCarouselService {
 
     @Autowired
     private CarouselMapper carouselMapper;
@@ -30,9 +32,12 @@ public class NewBeeMallCarouselServiceImpl extends ServiceImpl<CarouselMapper, C
     @Override
     public List<NewBeeMallIndexCarouselVO> getCarouselsForIndex(int number) {
         List<NewBeeMallIndexCarouselVO> newBeeMallIndexCarouselVOS = new ArrayList<>(number);
-        List<Carousel> carousels = carouselMapper.findCarouselsByNum(number);
-        if (!CollectionUtils.isEmpty(carousels)) {
-            newBeeMallIndexCarouselVOS = BeanUtil.copyList(carousels, NewBeeMallIndexCarouselVO.class);
+
+        List<Carousel> carouselList = list(new LambdaQueryWrapper<Carousel>().orderByDesc(Carousel::getCarouselRank))
+                .stream().limit(4).collect(Collectors.toList());
+        //List<Carousel> carousels = carouselMapper.findCarouselsByNum(number);
+        if (!CollectionUtils.isEmpty(carouselList)) {
+            newBeeMallIndexCarouselVOS = BeanUtil.copyList(carouselList, NewBeeMallIndexCarouselVO.class);
         }
         return newBeeMallIndexCarouselVOS;
     }

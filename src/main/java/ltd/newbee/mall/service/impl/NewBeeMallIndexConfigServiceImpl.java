@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ltd.newbee.mall.api.vo.NewBeeMallIndexConfigGoodsVO;
 import ltd.newbee.mall.dao.IndexConfigMapper;
@@ -26,7 +27,7 @@ import java.util.stream.Collectors;
 
 @Service("newBeeMallIndexConfigService")
 public class NewBeeMallIndexConfigServiceImpl
-        extends ServiceImpl<IndexConfigMapper, IndexConfig>  implements NewBeeMallIndexConfigService {
+        extends ServiceImpl<IndexConfigMapper, IndexConfig> implements NewBeeMallIndexConfigService {
 
     @Autowired
     private IndexConfigMapper indexConfigMapper;
@@ -37,10 +38,15 @@ public class NewBeeMallIndexConfigServiceImpl
     @Override
     public List<NewBeeMallIndexConfigGoodsVO> getConfigGoodsesForIndex(int configType, int number) {
         List<NewBeeMallIndexConfigGoodsVO> newBeeMallIndexConfigGoodsVOS = new ArrayList<>(number);
-        List<IndexConfig> indexConfigs = indexConfigMapper.findIndexConfigsByTypeAndNum(configType, number);
-        if (!CollectionUtils.isEmpty(indexConfigs)) {
+
+        List<IndexConfig> indexConfigList = list(new LambdaQueryWrapper<IndexConfig>()
+                .eq(IndexConfig::getConfigType, configType)
+                .orderByDesc(IndexConfig::getConfigRank)).stream().limit(5).collect(Collectors.toList());
+
+        // List<IndexConfig> indexConfigs = indexConfigMapper.findIndexConfigsByTypeAndNum(configType, number);
+        if (!CollectionUtils.isEmpty(indexConfigList)) {
             //取出所有的goodsId
-            List<Long> goodsIds = indexConfigs.stream().map(IndexConfig::getGoodsId).collect(Collectors.toList());
+            List<Long> goodsIds = indexConfigList.stream().map(IndexConfig::getGoodsId).collect(Collectors.toList());
             List<NewBeeMallGoods> newBeeMallGoods = goodsMapper.selectByPrimaryKeys(goodsIds);
             newBeeMallIndexConfigGoodsVOS = BeanUtil.copyList(newBeeMallGoods, NewBeeMallIndexConfigGoodsVO.class);
             for (NewBeeMallIndexConfigGoodsVO newBeeMallIndexConfigGoodsVO : newBeeMallIndexConfigGoodsVOS) {
