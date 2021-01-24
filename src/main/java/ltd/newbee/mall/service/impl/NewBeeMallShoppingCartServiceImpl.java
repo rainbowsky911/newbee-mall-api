@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ltd.newbee.mall.api.param.SaveCartItemParam;
 import ltd.newbee.mall.api.param.UpdateCartItemParam;
@@ -19,6 +20,7 @@ import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
 import ltd.newbee.mall.dao.NewBeeMallShoppingCartItemMapper;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.entity.NewBeeMallShoppingCartItem;
+import ltd.newbee.mall.service.NewBeeMallGoodsService;
 import ltd.newbee.mall.service.NewBeeMallShoppingCartService;
 import ltd.newbee.mall.util.BeanUtil;
 import ltd.newbee.mall.util.PageQueryUtil;
@@ -41,9 +43,17 @@ public class NewBeeMallShoppingCartServiceImpl
     @Autowired
     private NewBeeMallGoodsMapper newBeeMallGoodsMapper;
 
+
+    @Autowired
+    private NewBeeMallGoodsService mallGoodsService;
+
     @Override
     public String saveNewBeeMallCartItem(SaveCartItemParam saveCartItemParam, Long userId) {
-        NewBeeMallShoppingCartItem temp = newBeeMallShoppingCartItemMapper.selectByUserIdAndGoodsId(userId, saveCartItemParam.getGoodsId());
+
+        NewBeeMallShoppingCartItem temp = getOne(new LambdaQueryWrapper<NewBeeMallShoppingCartItem>()
+                .eq(NewBeeMallShoppingCartItem::getUserId, userId)
+                .eq(NewBeeMallShoppingCartItem::getGoodsId, saveCartItemParam.getGoodsId()));
+        //NewBeeMallShoppingCartItem temp = newBeeMallShoppingCartItemMapper.selectByUserIdAndGoodsId(userId, saveCartItemParam.getGoodsId());
         if (temp != null) {
             //已存在则修改该记录
             NewBeeMallException.fail(ServiceResultEnum.SHOPPING_CART_ITEM_EXIST_ERROR.getResult());
@@ -53,7 +63,13 @@ public class NewBeeMallShoppingCartServiceImpl
         if (newBeeMallGoods == null) {
             return ServiceResultEnum.GOODS_NOT_EXIST.getResult();
         }
-        int totalItem = newBeeMallShoppingCartItemMapper.selectCountByUserId(userId);
+
+        int totalItem = count(new LambdaQueryWrapper<NewBeeMallShoppingCartItem>()
+                .eq(NewBeeMallShoppingCartItem::getUserId, userId));
+
+        // int totalItem = newBeeMallShoppingCartItemMapper.selectCountByUserId(userId);
+
+
         //超出单个商品的最大数量
         if (saveCartItemParam.getGoodsCount() < 1) {
             return ServiceResultEnum.SHOPPING_CART_ITEM_NUMBER_ERROR.getResult();
@@ -69,11 +85,20 @@ public class NewBeeMallShoppingCartServiceImpl
         BeanUtil.copyProperties(saveCartItemParam, newBeeMallShoppingCartItem);
         newBeeMallShoppingCartItem.setUserId(userId);
         //保存记录
-        if (newBeeMallShoppingCartItemMapper.insertSelective(newBeeMallShoppingCartItem) > 0) {
+
+        if (save(newBeeMallShoppingCartItem)) {
             return ServiceResultEnum.SUCCESS.getResult();
         }
         return ServiceResultEnum.DB_ERROR.getResult();
     }
+
+       /* if (newBeeMallShoppingCartItemMapper.insertSelective(newBeeMallShoppingCartItem) > 0) {
+            return ServiceResultEnum.SUCCESS.getResult();
+        }
+        return ServiceResultEnum.DB_ERROR.getResult();
+        }
+        */
+
 
     @Override
     public String updateNewBeeMallCartItem(UpdateCartItemParam updateCartItemParam, Long userId) {
@@ -114,7 +139,14 @@ public class NewBeeMallShoppingCartServiceImpl
     @Override
     public List<NewBeeMallShoppingCartItemVO> getMyShoppingCartItems(Long newBeeMallUserId) {
         List<NewBeeMallShoppingCartItemVO> newBeeMallShoppingCartItemVOS = new ArrayList<>();
-        List<NewBeeMallShoppingCartItem> newBeeMallShoppingCartItems = newBeeMallShoppingCartItemMapper.selectByUserId(newBeeMallUserId, Constants.SHOPPING_CART_ITEM_TOTAL_NUMBER);
+
+        List<NewBeeMallShoppingCartItem> newBeeMallShoppingCartItems = list(new LambdaQueryWrapper<NewBeeMallShoppingCartItem>()
+                .eq(NewBeeMallShoppingCartItem::getUserId, newBeeMallUserId))
+                .stream()
+                .limit(Constants.SHOPPING_CART_ITEM_TOTAL_NUMBER)
+                .collect(Collectors.toList());
+      /*  List<NewBeeMallShoppingCartItem> newBeeMallShoppingCartItems = newBeeMallShoppingCartItemMapper
+                .selectByUserId(newBeeMallUserId, Constants.SHOPPING_CART_ITEM_TOTAL_NUMBER);*/
         return getNewBeeMallShoppingCartItemVOS(newBeeMallShoppingCartItemVOS, newBeeMallShoppingCartItems);
     }
 
@@ -141,14 +173,23 @@ public class NewBeeMallShoppingCartServiceImpl
      * @param newBeeMallShoppingCartItems
      * @return
      */
-    private List<NewBeeMallShoppingCartItemVO> getNewBeeMallShoppingCartItemVOS(List<NewBeeMallShoppingCartItemVO> newBeeMallShoppingCartItemVOS, List<NewBeeMallShoppingCartItem> newBeeMallShoppingCartItems) {
+    private List<NewBeeMallShoppingCartItemVO> getNewBeeMallShoppingCartItemVOS(List<NewBeeMallShoppingCartItemVO> newBeeMallShoppingCartItemVOS,
+                                                                                List<NewBeeMallShoppingCartItem> newBeeMallShoppingCartItems) {
         if (!CollectionUtils.isEmpty(newBeeMallShoppingCartItems)) {
             //查询商品信息并做数据转换
             List<Long> newBeeMallGoodsIds = newBeeMallShoppingCartItems.stream().map(NewBeeMallShoppingCartItem::getGoodsId).collect(Collectors.toList());
-            List<NewBeeMallGoods> newBeeMallGoods = newBeeMallGoodsMapper.selectByPrimaryKeys(newBeeMallGoodsIds);
+
+            List<NewBeeMallGoods> newBeeMallGoods =
+                    mallGoodsService.list(new LambdaQueryWrapper<NewBeeMallGoods>()
+                            .in(NewBeeMallGoods::getGoodsId, newBeeMallGoodsIds)
+                            .orderByDesc(NewBeeMallGoods::getGoodsId));
+
+            // List<NewBeeMallGoods> newBeeMallGoods = newBeeMallGoodsMapper.selectByPrimaryKeys(newBeeMallGoodsIds);
+
             Map<Long, NewBeeMallGoods> newBeeMallGoodsMap = new HashMap<>();
             if (!CollectionUtils.isEmpty(newBeeMallGoods)) {
-                newBeeMallGoodsMap = newBeeMallGoods.stream().collect(Collectors.toMap(NewBeeMallGoods::getGoodsId, Function.identity(), (entity1, entity2) -> entity1));
+                newBeeMallGoodsMap = newBeeMallGoods.stream().collect(Collectors.toMap(NewBeeMallGoods::getGoodsId,
+                        Function.identity(), (entity1, entity2) -> entity1));
             }
             for (NewBeeMallShoppingCartItem newBeeMallShoppingCartItem : newBeeMallShoppingCartItems) {
                 NewBeeMallShoppingCartItemVO newBeeMallShoppingCartItemVO = new NewBeeMallShoppingCartItemVO();

@@ -9,7 +9,6 @@
 package ltd.newbee.mall.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import ltd.newbee.mall.entity.GoodsCategory;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.entity.StockNumDTO;
 import ltd.newbee.mall.util.PageQueryUtil;
@@ -38,6 +37,7 @@ public interface NewBeeMallGoodsMapper extends BaseMapper<NewBeeMallGoods> {
 
     List<NewBeeMallGoods> selectByPrimaryKeys(List<Long> goodsIds);
 
+    //        //TODO 41的代码xml层可以不需要添加@@Param参数拿到值
     List<NewBeeMallGoods> findNewBeeMallGoodsListBySearch(PageQueryUtil pageUtil);
 
     int getTotalNewBeeMallGoodsBySearch(PageQueryUtil pageUtil);
