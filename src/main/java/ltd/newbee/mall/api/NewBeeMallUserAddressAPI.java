@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.api;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import ltd.newbee.mall.api.param.SaveMallUserAddressParam;
@@ -92,7 +93,13 @@ public class NewBeeMallUserAddressAPI {
     @GetMapping("/address/default")
     @ApiOperation(value = "获取默认收货地址", notes = "无传参")
     public Result getDefaultMallUserAddress(@TokenToMallUser MallUser loginMallUser) {
-        MallUserAddress mallUserAddressById = mallUserAddressService.getMyDefaultAddressByUserId(loginMallUser.getUserId());
+
+
+        MallUserAddress mallUserAddressById = mallUserAddressService.getOne(new LambdaQueryWrapper<MallUserAddress>()
+                .eq(MallUserAddress::getUserId, 7L)
+                .eq(MallUserAddress::getDefaultFlag, 1)
+                .last("limit  "+1));
+        //MallUserAddress mallUserAddressById = mallUserAddressService.getMyDefaultAddressByUserId(loginMallUser.getUserId());
         return ResultGenerator.genSuccessResult(mallUserAddressById);
     }
 

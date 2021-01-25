@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ltd.newbee.mall.api.vo.NewBeeMallUserAddressVO;
 import ltd.newbee.mall.common.NewBeeMallException;
@@ -25,15 +26,18 @@ import java.util.List;
 
 @Service("newBeeMallUserAddressService")
 public class NewBeeMallUserAddressServiceImpl
-        extends ServiceImpl<MallUserAddressMapper, MallUserAddress>  implements NewBeeMallUserAddressService {
+        extends ServiceImpl<MallUserAddressMapper, MallUserAddress> implements NewBeeMallUserAddressService {
 
     @Autowired
     private MallUserAddressMapper userAddressMapper;
 
     @Override
     public List<NewBeeMallUserAddressVO> getMyAddresses(Long userId) {
-        List<MallUserAddress> myAddressList = userAddressMapper.findMyAddressList(userId);
-        List<NewBeeMallUserAddressVO> newBeeMallUserAddressVOS = BeanUtil.copyList(myAddressList, NewBeeMallUserAddressVO.class);
+        List<MallUserAddress> userAddresses = list(new LambdaQueryWrapper<MallUserAddress>().eq(MallUserAddress::getUserId, userId)
+                .orderByDesc(MallUserAddress::getAddressId));
+        //List<MallUserAddress> myAddressList = userAddressMapper.findMyAddressList(userId);
+
+        List<NewBeeMallUserAddressVO> newBeeMallUserAddressVOS = BeanUtil.copyList(userAddresses, NewBeeMallUserAddressVO.class);
         return newBeeMallUserAddressVOS;
     }
 
@@ -43,7 +47,12 @@ public class NewBeeMallUserAddressServiceImpl
         Date now = new Date();
         if (mallUserAddress.getDefaultFlag().intValue() == 1) {
             //添加默认地址，需要将原有的默认地址修改掉
-            MallUserAddress defaultAddress = userAddressMapper.getMyDefaultAddress(mallUserAddress.getUserId());
+          //  MallUserAddress defaultAddress = userAddressMapper.getMyDefaultAddress(mallUserAddress.getUserId());
+            MallUserAddress defaultAddress = getOne(new LambdaQueryWrapper<MallUserAddress>()
+                    .eq(MallUserAddress::getUserId, 7L)
+                    .eq(MallUserAddress::getDefaultFlag, 1)
+                    .last("limit  "+1));
+
             if (defaultAddress != null) {
                 defaultAddress.setDefaultFlag((byte) 0);
                 defaultAddress.setUpdateTime(now);
@@ -54,7 +63,8 @@ public class NewBeeMallUserAddressServiceImpl
                 }
             }
         }
-        return userAddressMapper.insertSelective(mallUserAddress) > 0;
+        return save(mallUserAddress);
+       // return userAddressMapper.insertSelective(mallUserAddress) > 0;
     }
 
     @Override
