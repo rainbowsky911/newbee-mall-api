@@ -112,7 +112,8 @@ public class NewBeeMallShoppingCartAPI {
             NewBeeMallException.fail("参数异常");
         }
         int priceTotal = 0;
-        List<NewBeeMallShoppingCartItemVO> itemsForSettle = newBeeMallShoppingCartService.getCartItemsForSettle(Arrays.asList(cartItemIds), loginMallUser.getUserId());
+        List<NewBeeMallShoppingCartItemVO> itemsForSettle = newBeeMallShoppingCartService
+                .getCartItemsForSettle(Arrays.asList(cartItemIds), loginMallUser.getUserId());
         if (CollectionUtils.isEmpty(itemsForSettle)) {
             //无数据则抛出异常
             NewBeeMallException.fail("参数异常");

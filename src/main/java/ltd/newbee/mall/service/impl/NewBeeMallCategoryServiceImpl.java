@@ -82,11 +82,13 @@ public class NewBeeMallCategoryServiceImpl extends ServiceImpl<GoodsCategoryMapp
     public List<NewBeeMallIndexCategoryVO> getCategoriesForIndex() {
         List<NewBeeMallIndexCategoryVO> newBeeMallIndexCategoryVOS = new ArrayList<>();
         //获取一级分类的固定数量的数据
-        List<GoodsCategory> firstLevelCategories = goodsCategoryMapper.selectByLevelAndParentIdsAndNumber(Collections.singletonList(0L), NewBeeMallCategoryLevelEnum.LEVEL_ONE.getLevel(), Constants.INDEX_CATEGORY_NUMBER);
+        List<GoodsCategory> firstLevelCategories = goodsCategoryMapper.selectByLevelAndParentIdsAndNumber(Collections.singletonList(0L),
+                NewBeeMallCategoryLevelEnum.LEVEL_ONE.getLevel(), Constants.INDEX_CATEGORY_NUMBER);
         if (!CollectionUtils.isEmpty(firstLevelCategories)) {
             List<Long> firstLevelCategoryIds = firstLevelCategories.stream().map(GoodsCategory::getCategoryId).collect(Collectors.toList());
             //获取二级分类的数据
-            List<GoodsCategory> secondLevelCategories = goodsCategoryMapper.selectByLevelAndParentIdsAndNumber(firstLevelCategoryIds, NewBeeMallCategoryLevelEnum.LEVEL_TWO.getLevel(), 0);
+            List<GoodsCategory> secondLevelCategories = goodsCategoryMapper.selectByLevelAndParentIdsAndNumber
+                    (firstLevelCategoryIds, NewBeeMallCategoryLevelEnum.LEVEL_TWO.getLevel(), 0);
             if (!CollectionUtils.isEmpty(secondLevelCategories)) {
                 List<Long> secondLevelCategoryIds = secondLevelCategories.stream().map(GoodsCategory::getCategoryId).collect(Collectors.toList());
                 //获取三级分类的数据
@@ -110,7 +112,9 @@ public class NewBeeMallCategoryServiceImpl extends ServiceImpl<GoodsCategoryMapp
                     //处理一级分类
                     if (!CollectionUtils.isEmpty(secondLevelCategoryVOS)) {
                         //根据 parentId 将 thirdLevelCategories 分组
-                        Map<Long, List<SecondLevelCategoryVO>> secondLevelCategoryVOMap = secondLevelCategoryVOS.stream().collect(groupingBy(SecondLevelCategoryVO::getParentId));
+                        Map<Long, List<SecondLevelCategoryVO>> secondLevelCategoryVOMap =
+                                secondLevelCategoryVOS.stream().collect(groupingBy(SecondLevelCategoryVO::getParentId));
+
                         for (GoodsCategory firstCategory : firstLevelCategories) {
                             NewBeeMallIndexCategoryVO newBeeMallIndexCategoryVO = new NewBeeMallIndexCategoryVO();
                             BeanUtil.copyProperties(firstCategory, newBeeMallIndexCategoryVO);

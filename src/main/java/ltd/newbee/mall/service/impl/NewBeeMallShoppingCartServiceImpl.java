@@ -156,7 +156,14 @@ public class NewBeeMallShoppingCartServiceImpl
         if (CollectionUtils.isEmpty(cartItemIds)) {
             NewBeeMallException.fail("购物项不能为空");
         }
-        List<NewBeeMallShoppingCartItem> newBeeMallShoppingCartItems = newBeeMallShoppingCartItemMapper.selectByUserIdAndCartItemIds(newBeeMallUserId, cartItemIds);
+
+        List<NewBeeMallShoppingCartItem> newBeeMallShoppingCartItems = list(new LambdaQueryWrapper<NewBeeMallShoppingCartItem>()
+                .eq(NewBeeMallShoppingCartItem::getUserId, newBeeMallUserId)
+                .in(NewBeeMallShoppingCartItem::getCartItemId, cartItemIds));
+
+   /*     List<NewBeeMallShoppingCartItem> newBeeMallShoppingCartItems = newBeeMallShoppingCartItemMapper
+                .selectByUserIdAndCartItemIds(newBeeMallUserId, cartItemIds);*/
+
         if (CollectionUtils.isEmpty(newBeeMallShoppingCartItems)) {
             NewBeeMallException.fail("购物项不能为空");
         }
